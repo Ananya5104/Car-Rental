@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Car Details</h1>
+    <form action="/addcar" method="POST">
+        <div class="form-group">
+            <label for="mmy">MMY (Make, Model, Year):</label>
+            <input type="text" id="mmy" name="mmy" required>
+        </div>
+        <div class="form-group">
+            <label for="fuelType">Fule Type:</label>
+            <input type="text" id="fuelType" name="fuelType" required>
+        </div>
+        <div class="form-group">
+            <label for="license">License Number:</label>
+            <input type="text" id="license" name="license" required>
+        </div>
+        <div class="form-group">
+            <label for="rent-rate">Rent Rate:</label>
+            <input type="number" id="rent-rate" name="rentRate" step="1" required>
+        </div>
+        <div class="form-group">
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" required>
+        </div>
+        <button type="submit">Add car</button>
+    </form>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Make/Model/Year</th>
+                <th>License Number</th>
+                <th>Fuel Type</th>
+                <th>Rent Rate</th>
+                <th>Location</th>
+                <th>Status</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% cars.forEach(car => { %>
+                <tr>
+                    <td><%= car.mmy %></td>
+                    <td><%= car.license %></td>
+                    <td><%= car.fuelType %></td>
+                    <td><%= car.rentRate %></td>
+                    <td><%= car.location %></td>
+                    <td><%= car.status %></td>
+                    <td><button>Update</button></td>
+                    <td><button>Delete</button></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</body>
+</html>

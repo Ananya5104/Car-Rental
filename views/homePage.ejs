@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Available cars</h1>
+    <!-- Filter Form -->
+    <form method="GET" action="/filterCars">
+        <label for="mmy">Make/Model/Year (MMY):</label>
+        <input type="text" id="mmy" name="mmy" placeholder="Enter MMY"><br>
+
+        <label for="fuelType">Fuel Type:</label>
+        <select id="fuelType" name="fuelType">
+            <option value="">All</option>
+            <option value="Petrol">Petrol</option>
+            <option value="Diesel">Diesel</option>
+            <option value="Electric">Electric</option>
+            <option value="Hybrid">Hybrid</option>
+        </select><br>
+
+        <label for="minRent">Min Rent Rate:</label>
+        <input type="number" id="minRent" name="minRent" placeholder="Min Rent"><br>
+
+        <label for="maxRent">Max Rent Rate:</label>
+        <input type="number" id="maxRent" name="maxRent" placeholder="Max Rent"><br>
+
+        <button type="submit">Filter</button>
+    </form>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Make/Model/Year</th>
+                <th>License Number</th>
+                <th>Fuel Type</th>
+                <th>Rent Rate</th>
+                <th>Location</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% cars.forEach(car => { %>
+                <tr>
+                    <td><%= car.mmy %></td>
+                    <td><%= car.license %></td>
+                    <td><%= car.fuelType%></td>
+                    <td><%= car.rentRate %></td>
+                    <td><%= car.location %></td>
+                    <td><form action="/isbooked" method="post"><button id="book-btn-<%= car._id %>" data-id="<%= car._id %>">Book</button></form></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</body>
+</html>
