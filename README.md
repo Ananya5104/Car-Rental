@@ -87,7 +87,7 @@ in server.js change the MongURI variable
 
 - DELETE `/delete-customer/:id`  
   Delete a customer by ID.
-
+Video link: https://drive.google.com/file/d/1aAb-krGpIyoyU2ueRAOHAZ0OIassnxr9/view?usp=drive_link
 ## Directory Structure
 
 ```plaintext
