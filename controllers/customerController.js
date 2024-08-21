@@ -1,4 +1,6 @@
 const userModel = require('../models/userModal')
+const bcryptjs = require('bcryptjs')
+
 exports.login = async(req,res)=>{
     const {gmail , password} = req.body;
   
@@ -16,13 +18,9 @@ exports.login = async(req,res)=>{
   };
   exports.adminLogin = async(req,res)=>{
     const { gmail, password } = req.body;
-  
-    // if (gmail !== "nexus@gmail.com" || password !== "nexus") {
-    //   return res.redirect("/adminLogin");
-    // }
     
     const user = await userModel.findOne({role:'Admin'});
-    const isMatch = await bcryptjs.compare(password,user.password1);
+    const isMatch = await bcryptjs.compare(password,user.password);
   
     if(!isMatch){
       res.redirect("/adminLogin");
@@ -38,23 +36,19 @@ exports.signin = async(req,res)=>{
     if(user){
         return res.redirect('/loginPage');
     }
-    const hashpassword= await bcryptjs.hash(password1,12);
+    const hashpassword= await bcryptjs.hash(password,12);
     user = new userModel({
       fullname ,
       gmail,
       contact, 
       password:hashpassword,
-      image,
     });
-  
-    async function saveUser() {
-        try {
-          await user.save();
-        } catch (error) {
-          console.error(error);
-        }
-      }
-    saveUser();
+    try {
+      await user.save();
+        console.log('User saved successfully');
+      } catch (error) {
+          console.error('Error saving user:', error);
+      }  
     res.redirect('/loginPage')
   };
   

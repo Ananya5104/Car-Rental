@@ -19,6 +19,12 @@ app.get('/', (req,res)=>{
 app.get('/loginPage',(req,res)=>{
     res.render('./loginPage')
 })
+app.get('/adminLogin',(req,res)=>{
+    res.render('./adminLogin')
+})
+app.get('/signinPage',(req,res)=>{
+    res.render('./signinPage')
+})
 app.get('/homePage', async(req,res)=>{
     const allcars = await carModal.find({})
     res.render('./homePage',{cars:allcars})
@@ -71,7 +77,7 @@ app.get('/filterCars', async (req, res) => {
     }
 });
 app.post('/isbooked',allcars.isBooked);
-app.post('/login', userControl.login);
+// app.post('/login', userControl.login);
 app.post('/adminLogin',userControl.adminLogin)
 app.post('/signin',userControl.signin)
 
