@@ -42,25 +42,20 @@ This Car Rental Service Application is designed to allow customers to search for
     npm install
     ```
 
-3. Set up environment variables:
-
-    Create a `.env` file in the root directory and add your MongoDB connection string:
-
-    ```env
-    MONGODB_URI=your-mongodb-connection-string
-    ```
+3. Give MongoDB url
+in server.js change the MongURI variable
 
 4. Run the application:
 
     ```bash
-    npm start
+    nodemon src/server.js
     ```
 
     The backend server will start on `http://localhost:5000`.
 
 5. Access the frontend:
 
-    - Set up your React frontend in the `/client` directory.
+    - Set up your React frontend in the `/views` directory.
     - Run the frontend server to access the customer and admin dashboards.
 
 ## API Endpoints
