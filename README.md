@@ -32,7 +32,7 @@ This Car Rental Service Application is designed to allow customers to search for
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/your-username/car-rental-service.git
+    git clone https://github.com/Ananya5104/Car-Rental.git
     cd car-rental-service
     ```
 
