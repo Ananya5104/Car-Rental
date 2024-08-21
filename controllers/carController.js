@@ -15,21 +15,11 @@ exports.addcar = async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
-exports.isBooked = async (req, res) => {
-    try {
-        const carId = req.params.id;  // Assuming the car ID is passed as a parameter
-        const car = await carSchema.findById(carId);
-        
-        if (!car) {
-            return res.status(404).json({ error: 'Car not found' });
-        }
-
-        // Assuming you have a `booked` field in your schema (boolean or status field)
-        const isBooked = car.booked ? true : false;
-        
-        res.json({ isBooked });
-    } catch (error) {
-        console.error('Error checking booking status:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
+exports.isBooked = async(req,res)=>{
+    const {license} = req.body;
+    try{
+        let user1 = await carSchema.findByIdAndUpdate(license,{status: 0},{new:true})
+    }catch(error){
+        console.log(error);
     }
-};
+}

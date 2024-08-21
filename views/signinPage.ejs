@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+</head>
+<body>
+    <h1>User Registration Form</h1>
+    <form action="/register" method="POST" enctype="multipart/form-data">
+        <div>
+            <label for="fullname">Full Name:</label>
+            <input type="text" id="fullname" name="fullname" required>
+        </div>
+
+        <div>
+            <label for="username">Gmail:</label>
+            <input type="email" id="gmail" name="gmail" required>
+        </div>
+
+        <div>
+            <label for="contact">Contact:</label>
+            <input type="text" id="contact" name="contact" required>
+        </div>
+
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+
+        <div>
+            <label for="image">Upload Image:</label>
+            <input type="file" id="image" name="image" multiple required>
+        </div>
+
+
+        <div>
+            <form action="/signin" method="post"><button type="submit">Register</button></form>
+        </div>
+    </form>
+</body>
+</html>

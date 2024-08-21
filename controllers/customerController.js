@@ -1,45 +1,20 @@
-import userModel from '../models/userModal'
+const userModel = require('../models/userModal')
 exports.login = async(req,res)=>{
     const {gmail , password} = req.body;
   
     const user = await userModel.findOne({gmail});
   
     if(!user){
-        return res.redirect("/login");
+        return res.redirect("/loginPage");
     }
     const isMatch = await bcryptjs.compare(password,user.password1);
   
     if(!isMatch){
-        return res.redirect("/login");
+        return res.redirect("/loginPage");
     }
-    
-    req.session.isAuth=true;
-    req.session.userId = user._id;
-    console.log(user._id);
-    let userid = user._id;
-    let userdetails = await userModel.findOne({_id:userid});
-    let profile = await userProfile.findOne({id:userid});
-    if(!profile){
-      profile = new userProfile({
-        id:userid,
-        fullname:userdetails.fullname,
-        bio:"write your bio here...",
-        profileImg:"/assets/User-Profile-Image.png",
-        interestedToWork:false,
-      })
-      async function saveProfile() {
-        try {
-          await profile.save();
-        } catch (error) {
-          console.error(error);
-        }
-      }
-      saveProfile();
-      // profile.save();
-    }
-    res.redirect("/studentHomePage");
+    res.redirect("./homePage");
   };
-  app.post("/adminlogin", async(req,res)=>{
+  exports.adminLogin = async(req,res)=>{
     const { gmail, password } = req.body;
   
     // if (gmail !== "nexus@gmail.com" || password !== "nexus") {
@@ -52,26 +27,24 @@ exports.login = async(req,res)=>{
     if(!isMatch){
       res.redirect("/adminLogin");
     }
-    req.session.isAuth = true;
-    res.redirect("/adminDashboard");
-  });
+    res.redirect("/adminPage");
+  };
   
   
-  app.post("/signup", async(req,res)=>{
-    const {fullname , phno,gmail, password1} = req.body;
+exports.signin = async(req,res)=>{
+    const {fullname ,gmail, contact,password} = req.body;
   
     let user = await userModel.findOne({gmail});
     if(user){
-        return res.redirect('/login');
+        return res.redirect('/loginPage');
     }
     const hashpassword= await bcryptjs.hash(password1,12);
     user = new userModel({
       fullname ,
-      phno,
-      gmail, 
-      password1:hashpassword,
-      about: "",
-      image: "profile_img.png"
+      gmail,
+      contact, 
+      password:hashpassword,
+      image,
     });
   
     async function saveUser() {
@@ -82,6 +55,6 @@ exports.login = async(req,res)=>{
         }
       }
     saveUser();
-    res.redirect('/login')
-  });
+    res.redirect('/loginPage')
+  };
   

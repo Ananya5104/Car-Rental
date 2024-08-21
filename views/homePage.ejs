@@ -42,14 +42,16 @@
         </thead>
         <tbody>
             <% cars.forEach(car => { %>
+                <%if(car.status){ %>
                 <tr>
                     <td><%= car.mmy %></td>
                     <td><%= car.license %></td>
                     <td><%= car.fuelType%></td>
                     <td><%= car.rentRate %></td>
                     <td><%= car.location %></td>
-                    <td><form action="/isbooked" method="post"><button id="book-btn-<%= car._id %>" data-id="<%= car._id %>">Book</button></form></td>
+                    <td><form action="/isbooked" method="post"><button id="booking" value=""<%= car.license %>"">Book</button></form></td>
                 </tr>
+            <% }; %>
             <% }); %>
         </tbody>
     </table>

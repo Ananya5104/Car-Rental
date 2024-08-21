@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const mongoURI = "mongodb+srv://saiananyakatakam:NLnqR9ifdN8qbVft@cluster0.lbvmb.mongodb.net/CarRentals"
 const allcars = require('../controllers/carController')
 const carModal = require('../models/carModal')
+const userControl = require('../controllers/customerController')
 const app = express();
 app.use(express.json());
 
@@ -70,7 +71,9 @@ app.get('/filterCars', async (req, res) => {
     }
 });
 app.post('/isbooked',allcars.isBooked);
-
+app.post('/login', userControl.login);
+app.post('/adminLogin',userControl.adminLogin)
+app.post('/signin',userControl.signin)
 
 const port = 5000;
 app.listen(port, () => console.log(`Listening on port ${port}`));
